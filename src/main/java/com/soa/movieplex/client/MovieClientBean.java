@@ -6,6 +6,7 @@
 package com.soa.movieplex.client;
 
 import com.soa.movieplex.entities.Movie;
+import com.soa.movieplex.json.MovieWriter;
 import javax.annotation.PostConstruct;
 import javax.annotation.PreDestroy;
 import javax.enterprise.context.RequestScoped;
@@ -13,7 +14,9 @@ import javax.inject.Inject;
 import javax.inject.Named;
 import javax.ws.rs.client.Client;
 import javax.ws.rs.client.ClientBuilder;
+import javax.ws.rs.client.Entity;
 import javax.ws.rs.client.WebTarget;
+import javax.ws.rs.core.MediaType;
 
 /**
  *
@@ -50,6 +53,16 @@ public class MovieClientBean {
                 .resolveTemplate("movieId", bean.getMovieId()).request()
                 .get(Movie.class);
         return movie;
+    }
+
+    public void addMovie() {
+        Movie movie = new Movie();
+        movie.setId(bean.getMovieId());
+        movie.setName(bean.getMovieName());
+        movie.setActors(bean.getActors());
+        target.register(MovieWriter.class)
+                .request()
+                .post(Entity.entity(movie, MediaType.APPLICATION_JSON));
     }
 
 }

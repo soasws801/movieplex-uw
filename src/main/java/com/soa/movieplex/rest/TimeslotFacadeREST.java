@@ -89,5 +89,11 @@ public class TimeslotFacadeREST extends AbstractFacade<Timeslot> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
+    @GET
+    @Produces({"application/xml", "application/json"})
+    public List<Timeslot> getAll() {
+        return super.findAll();
+    }
+
 }

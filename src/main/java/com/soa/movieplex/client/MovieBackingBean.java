@@ -18,6 +18,24 @@ import javax.inject.Named;
 public class MovieBackingBean implements Serializable{
     
     int movieId;
+    String movieName;
+    String actors;
+
+    public String getMovieName() {
+        return movieName;
+    }
+
+    public void setMovieName(String movieName) {
+        this.movieName = movieName;
+    }
+
+    public String getActors() {
+        return actors;
+    }
+
+    public void setActors(String actors) {
+        this.actors = actors;
+    }
 
     public int getMovieId() {
         return movieId;

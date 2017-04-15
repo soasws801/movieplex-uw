@@ -25,13 +25,12 @@ import javax.ws.rs.core.MediaType;
  *
  * @author umairwarsi
  */
-
 @Named
 @Stateless
 @Path("movies")
 public class MovieFacadeREST extends AbstractFacade<Movie> {
 
-    @PersistenceContext(unitName = "com.soa_movieplex_war_1.0-SNAPSHOTPU")
+    @PersistenceContext(unitName = "movieplexPU")
     private EntityManager em;
 
     public MovieFacadeREST() {
@@ -67,6 +66,7 @@ public class MovieFacadeREST extends AbstractFacade<Movie> {
 
     @GET
     @Override
+    @Path("findall")
     @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
     public List<Movie> findAll() {
         return super.findAll();
@@ -90,5 +90,11 @@ public class MovieFacadeREST extends AbstractFacade<Movie> {
     protected EntityManager getEntityManager() {
         return em;
     }
-    
+
+    @GET
+    @Produces({MediaType.APPLICATION_XML, MediaType.APPLICATION_JSON})
+    public List<Movie> getAll() {
+        return super.findAll();
+    }
+
 }
