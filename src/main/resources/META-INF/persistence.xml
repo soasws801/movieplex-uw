@@ -3,7 +3,20 @@
   <persistence-unit name="com.soa_movieplex_war_1.0-SNAPSHOTPU" transaction-type="JTA">
     <exclude-unlisted-classes>false</exclude-unlisted-classes>
     <properties>
-      <property name="javax.persistence.schema-generation.database.action" value="drop-and-create"/>
-    </properties>
+ <property name="javax.persistence.schema-generation.database.action"
+ value="drop-and-create"/>
+ <property name="javax.persistence.schema-generation.create-source"
+ value="script"/>
+ <property name="javax.persistence.schema-generation.drop-source"
+ value="script"/>
+ <property name="javax.persistence.schema-generation.create-script-source"
+ value="META-INF/create.sql"/>
+ <property name="javax.persistence.schema-generation.drop-script-source"
+ value="META-INF/drop.sql"/>
+ <property name="javax.persistence.sql-load-script-source"
+ value="META-INF/load.sql"/>
+ <property name="eclipselink.logging.exceptions" value="false"/>
+ <property name="eclipselink.deploy-on-startup" value="true"/>
+</properties>
   </persistence-unit>
 </persistence>
